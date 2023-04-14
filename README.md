@@ -1,3 +1,5 @@
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Flowminder/optimisation_workshop/cb-fix-env?labpath=wdf_workshop.ipynb)
+
 # optimisation_workshop
 
 If you already have an existing [`conda` package manager](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) installed, then use it to install `mamba` into the base environment
