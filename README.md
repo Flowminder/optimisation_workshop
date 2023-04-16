@@ -1,4 +1,4 @@
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Flowminder/optimisation_workshop/cb-fix-env?labpath=wdf_workshop.ipynb)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Flowminder/optimisation_workshop/main?labpath=wdf_workshop.ipynb)
 
 # optimisation_workshop
 
