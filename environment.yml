@@ -1,14 +1,16 @@
-name: base
+name: wdf_workshop
 channels:
-  - conda-forge
+    - conda-forge
 dependencies:
-  - geojson
-  - geopy
-  - geopandas
-  - ipyleaflet>=0.11.1
-  - ipympl
-  - jupyterlab
-  - leafmap
-  - matplotlib
-  - voila
-  - pip
+    - python=3.10
+    - jupyterlab>=3
+    - notebook
+    - rioxarray
+    - pandas
+    - numpy
+    - geopandas
+    - rasterio
+    - jupyter-server-proxy
+    - xarray_leaflet
+    - leafmap>=0.11.3
+    - localtileserver>=0.4.0
