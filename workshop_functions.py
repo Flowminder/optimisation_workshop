@@ -99,7 +99,7 @@ def coverage_graph(new_sites, title):
 def coverage_table(existing_sites, p2_sites, p3_sites):
     
     d = {'Priority levels': ['P1 (existing sites)', 'P1 + P2', 'P1 + P2 + P3'], 
-     'Number of sites': [len(existing_sites), len(existing_sites) + len(p2_sites), len(kaduna_existing_sites) + len(p2_sites) + len(p3_sites)],
+     'Number of sites': [len(existing_sites), len(existing_sites) + len(p2_sites), len(existing_sites) + len(p2_sites) + len(p3_sites)],
      'Estimated population covered': [4247042, 4247042 + sum(p2_sites.extra_people_covered), 4247042 + sum(p2_sites.extra_people_covered) + sum(p3_sites.extra_people_covered)],
      'Estimated % population covered': [39, p2_sites.iloc[[-1]].cumulative_perc_covered.values[0], p3_sites.iloc[[-1]].cumulative_perc_covered.values[0]]}
     
