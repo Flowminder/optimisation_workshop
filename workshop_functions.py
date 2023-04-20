@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 import matplotlib.lines as lines
 from matplotlib.ticker import MaxNLocator
+import pandas as pd
 
 ### functions for wdf_workshop notebook to reduce the amount of code in the notebook.
 ### workshop_map and coverage_table are NOT currently fully generic so need adapting for use in other optimisation projects.
