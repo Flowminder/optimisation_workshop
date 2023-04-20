@@ -4,8 +4,11 @@ from matplotlib.lines import Line2D
 import matplotlib.lines as lines
 from matplotlib.ticker import MaxNLocator
 
+### functions for wdf_workshop notebook to reduce the amount of code in the notebook.
+### workshop_map and coverage_table are NOT currently fully generic so need adapting for use in other optimisation projects.
 
-# mapping function
+
+# function for creating Kaduna default map with boundary and population
 def workshop_map(title, boundary, population):
     
     workshop_map = leafmap.Map(center=(10.48650018, 7.42406665), 
@@ -34,10 +37,13 @@ def workshop_map(title, boundary, population):
     
     return workshop_map
 
+
+# Generic function for plotting coverage and extra people added by new sites. If priority 2 and priority 3 are defined,
+# a dividing line and annotations will be added
 def coverage_graph(new_sites, title):
     
     fig, axs = plt.subplots(2, figsize=(10, 7))
-    fig.suptitle('Kaduna coverage')
+    fig.suptitle(title)
     
     # % population covered
     axs[0].plot(new_sites['site_rank'], (new_sites['cumulative_perc_covered']), color = '#095798')
@@ -73,7 +79,7 @@ def coverage_graph(new_sites, title):
             axs[0].annotate('P2\nsites', xy =(max(p2_sites.site_rank.values) - 250, max(p2_sites.cumulative_perc_covered.values)*0.75)) 
             
             # add p3 label to first graph
-            axs[0].annotate('P3\nsites', xy =(max(p2_sites.site_rank.values) + 200, max(p2_sites.cumulative_perc_covered.values)*0.75)) 
+            axs[0].annotate('P3\nsites', xy =(max(p2_sites.site_rank.values) + 50, max(p2_sites.cumulative_perc_covered.values)*0.75)) 
             
             # add vertical line to second graph
             axs[1].add_line(lines.Line2D([max(p2_sites.site_rank.values), max(p2_sites.site_rank.values)], 
@@ -84,7 +90,20 @@ def coverage_graph(new_sites, title):
             axs[1].annotate('P2\nsites', xy =(max(p2_sites.site_rank.values) - 250, max(p2_sites.extra_people_covered.values)/2)) 
             
             # add p3 label to second graph
-            axs[1].annotate('P3\nsites', xy =(max(p2_sites.site_rank.values) + 200, max(p2_sites.extra_people_covered.values)/2)) 
+            axs[1].annotate('P3\nsites', xy =(max(p2_sites.site_rank.values) + 50, max(p2_sites.extra_people_covered.values)/2)) 
             
 
     fig.tight_layout()
+    
+# function for producing a coverage table showing increased coverage statistics   
+def coverage_table(existing_sites, p2_sites, p3_sites):
+    
+    d = {'Priority levels': ['P1 (existing sites)', 'P1 + P2', 'P1 + P2 + P3'], 
+     'Number of sites': [len(existing_sites), len(existing_sites) + len(p2_sites), len(kaduna_existing_sites) + len(p2_sites) + len(p3_sites)],
+     'Estimated population covered': [4247042, 4247042 + sum(p2_sites.extra_people_covered), 4247042 + sum(p2_sites.extra_people_covered) + sum(p3_sites.extra_people_covered)],
+     'Estimated % population covered': [39, p2_sites.iloc[[-1]].cumulative_perc_covered.values[0], p3_sites.iloc[[-1]].cumulative_perc_covered.values[0]]}
+    
+    
+    df = pd.DataFrame(data=d)
+    
+    return df
